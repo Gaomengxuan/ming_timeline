@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<style type="text/css">
 		body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
-		body, button, input, select, textarea { font:12px/1.5 tahoma, arial, \5b8b\4f53; }
+		body, button, input, select, textarea { font:12px/1.5 'Microsoft YaHei', tahoma, arial, \5b8b\4f53; }
 		h1, h2, h3, h4, h5, h6{ font-size:100%; }
 		address, cite, dfn, em, var { font-style:normal; }
 		code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
@@ -28,19 +28,48 @@
 			overflow: auto;
 		}
 		.content .line{
-			width: 6px;
+			width: 18px;
 			height: 100%;
 			background: #aaa;
 			position: absolute;
 			top: 0;
 			left: 50%;
 			margin-left: -3px;
+			/*color: #fff;*/
+		}
+		.content .line li{
+			position: relative;
+		}
+		.content .line div{
+			position: absolute;
+		    /*height: 180px;*/
+		    width: 170px;
+		    padding: 10px;
+		    background: #D5F9CD;
+		    left: -250px;
+		    top: 54px;
+		    border-radius: 4px;
+		}
+		.content .line div::after{
+			content: '';
+		    position: absolute;
+		    left: 190px;
+		    top: 50%;
+		    margin-top: -4px;
+		    display: block;
+		    width: 0;
+		    height: 0;
+		    border-style: solid;
+		    border-color: transparent transparent transparent #D5F9CD;
+		    border-top-width: 4px;
+		    border-bottom-width: 4px;
+		    border-left-width: 50px;
 		}
 		.content .year{
 			position: absolute;
-		    top: 10px;
+		    top: 0;
 		    left: 50%;
-		    margin-left: -37px;
+		    margin-left: -40px;
 		}
 	</style>
 </head>
