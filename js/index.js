@@ -5,16 +5,11 @@
 	var util = {
 		//16进制方式表示颜色0-F
 		randomColor : function() {
-			
-			var arrHex = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
-			var strHex = "#";
-			var index;
-			for(var i = 0; i < 6; i++) {
-				//取得0-15之间的随机整数
-				index = Math.round(Math.random() * 15);
-				strHex += arrHex[index];
-			}
-			return strHex;
+			var r = parseInt(Math.random()*255),
+				g = parseInt(Math.random()*255),
+				b = parseInt(Math.random()*255),
+				a = 0.4;
+			return 'rgba('+r+', '+g+', '+b+', '+a+')';
 		},
 
 		// 获取当前年份所对应的像素
@@ -29,14 +24,14 @@
 		year_degree = 2;  // 跳跃的刻度
 
 	function setYearLine(){
-		var html = '<div class="year"><ul>';
+		var html = '<div class="year"><ul class="clearfix">';
 		for(var i=year_start; i<year_end; i=i+year_degree){
-			html += '<li>'+i+' -</li>';
+			html += '<li>'+i+'</li>';
 		}
 		html += '</ul></div>';
 
 
-		$('#content').append(html).children('.year').find('li').css({'height':year_per*year_degree+'px', 'line-height':year_per*year_degree+'px'});
+		$('#content').append(html).children('.year').css({'width':year_per*(year_end-year_start)}).find('li').css({'width':year_per*year_degree+'px'});
 	}
 	setYearLine();
 	setEmperorLine();
@@ -61,23 +56,17 @@
 			}
 		];
 
-		var marginTop =  util.getItemPix(data[0].start);
-		var html = '<div class="line"><ul style="margin-top:'+marginTop+'px">';
+		var marginLeft =  util.getItemPix(data[0].start);
+		var html = '<div class="line"><ul class="clearfix" style="margin-left:'+marginLeft+'px">';
 		for(var i=0; i<data.length; i++){
 			var item = data[i],
-				height = (item.end-item.start)*year_per,
+				width = (item.end-item.start)*year_per,
 				bgcolor = util.randomColor();
-			html += '<li style="height:'+height+'px; background:'+bgcolor+';">\
-						<div>\
-							<h2 class="name">'+item.miao+':'+item.name+'（'+item.nian+'）</h2>\
-							<p class="info">'+item.info+'</p>\
-							<p>在位：'+item.start+'-'+item.end+'('+(item.end-item.start)+'年)</p>\
-						</div>\
-					</li>';
+			html += '<li style="width:'+width+'px; background:'+bgcolor+';">'+item.name+'-'+item.miao+'('+item.nian+')</li>';
 		}
 		html += '</ul></div>';
 		
-		$('#content').append(html).children('.line').css({'height':(year_end-year_start)*year_per});
+		$('#content').append(html).children('.line').css({'width':(year_end-year_start)*year_per});
 	}
 
 	function setThingLine(){
@@ -89,31 +78,47 @@
 				info : '',  // info可有可无，若事件过于简单，可省略
 			},
 			{
-				start : 1369,  // 公历
-				nian_start : '洪武二年', // 皇帝年号计数
-				end : 1400,
-				nian_end : '建文二年',
-				title : '大将常遇春在北伐时暴病而亡，享年39岁'
+				start : 1399,  // 公历
+				nian_start : '建文元年', // 皇帝年号计数
+				end : 1402,
+				nian_end : '建文四年',
+				title : '靖难之役'
 			}
 		];
 
-		var html = '<div class="thing">';
+		var html = '<div class="thing">',
+			level = [0, 0, 0, 0];  // 防止多个进度条重复
 		for(var i=0; i<data.length; i++){
 			var item = data[i],
-				startTop = util.getItemPix(item.start),
-				endTop = util.getItemPix(item.end),
-				bgcolor = util.randomColor();
-			html += '<div class="item" style="top:'+startTop+'px; height:'+(endTop-startTop)+'px; border-color:'+bgcolor+'; color:'+bgcolor+'">\
-						<span class="start">'+item.start+'('+item.nian_start+')</span>\
-						<div class="proce" style="background:'+bgcolor+'"></div>\
-						<div class="info">\
-							<h3>'+item.title+'</h3>\
-							<p class="desp">'+ (item.info||'' ) +'</p>\
+				startLeft = util.getItemPix(item.start),
+				endLeft = util.getItemPix(item.end),
+				bgcolor = util.randomColor(),
+				bt = 0;
+				
+			
+			for(var i=0; i<3; i++){
+				if(item.start>level[i]){
+					level[i] = item.end;
+					level[3] = i;
+					break;
+				}
+			}
+
+			bt = (level[3]+1)*30;
+
+			html += '<div class="item" style="left:'+startLeft+'px; width:'+(endLeft-startLeft)+'px; border-color:'+bgcolor+';">\
+						<div class="proce" style="background:'+bgcolor+'; bottom:'+bt+'px">\
+							<span class="start">'+item.start+'('+item.nian_start+')</span>'+item.title+'\
+							<span class="end">'+item.end+'('+item.nian_end+')\
 						</div>\
-						<span class="end">'+item.end+'('+item.nian_end+')</span>\
+						</span>\
 					</div>';
 		}
 		html += '</div>';
+		// <div class="info">\
+		// 					<h3>'+item.title+'</h3>\
+		// 					<p class="desp">'+ (item.info||'' ) +'</p>\
+		// 				</div>\
 		$('#content').append(html)
 	}
 	setThingLine();

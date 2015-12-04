@@ -1,0 +1,126 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+body, button, input, select, textarea { font:12px/1.5 'Microsoft YaHei', tahoma, arial, \5b8b\4f53; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+.clearfix:after {
+  content: "\00A0";
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+.clearfix{zoom:1} 
+.content{
+	border: 1px solid #ccc;
+	width: 1000px;
+	height: 600px;
+	margin: 10px auto;
+	position: relative;
+	overflow: auto;
+}
+.content .line{
+	background: #aaa;
+	position: absolute;
+	top: 52%;
+	left: 0%;
+	/*margin-left: -3px;*/
+	/*color: #fff;*/
+}
+.content .line li{
+	position: relative;
+	float: left;
+	padding: 10px 0;
+    text-align: center;
+    font-size: 18px;
+}
+
+.content .line div{
+	position: absolute;
+    /*height: 180px;*/
+    width: 170px;
+    padding: 10px;
+    background: #D5F9CD;
+    left: -250px;
+    top: 54px;
+    border-radius: 4px;
+}
+.content .line div::after{
+	content: '';
+    position: absolute;
+    left: 190px;
+    top: 50%;
+    margin-top: -4px;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent transparent transparent #D5F9CD;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 50px;
+}
+.content .year{
+	position: absolute;
+    top: 62%;
+    left: 0;
+    /*margin-left: -40px;*/
+}
+.content .year li{
+	float: left;
+	text-align: center;
+	position: relative;
+}
+.content .year li::before{
+	content: '|';
+	position: absolute;
+    top: -14px;
+    left: 50%;
+    margin-left: -1.5px;
+}
+.content .thing{
+	position: absolute;
+    top: 32%;
+    left: 0;
+}
+.content .thing .item{
+	border-left: 1px dashed #333;
+    border-right: 1px dashed #333;
+    position: absolute;
+    height: 120px;
+}
+.content .thing span{
+	position: absolute;
+    bottom: 18px;
+}
+.content .thing .start{
+	left: -38px;
+}
+.content .thing .end{
+	right: -38px;
+}
+.content .thing .proce{
+	position: absolute;
+    text-align: center;
+    width: 100%;
+    background: #ccc;
+    bottom: 14px;
+    left: 0;
+}
+.content .thing .info{
+	margin-left: 26px;
+}
