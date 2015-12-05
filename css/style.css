@@ -25,60 +25,27 @@ table { border-collapse:collapse; border-spacing:0; }
   overflow: hidden;
 }
 .clearfix{zoom:1} 
-.content{
+.main{
 	border: 1px solid #ccc;
 	width: 1000px;
-	height: 600px;
 	margin: 10px auto;
 	position: relative;
 	overflow: auto;
 }
+.content{
+	position: relative;
+}
 .content .line{
-	background: #aaa;
-	position: absolute;
-	top: 52%;
-	left: 0%;
-	/*margin-left: -3px;*/
-	/*color: #fff;*/
+	background: #ccc;
 }
 .content .line li{
-	position: relative;
 	float: left;
 	padding: 10px 0;
     text-align: center;
-    font-size: 18px;
-}
-
-.content .line div{
-	position: absolute;
-    /*height: 180px;*/
-    width: 170px;
-    padding: 10px;
-    background: #D5F9CD;
-    left: -250px;
-    top: 54px;
-    border-radius: 4px;
-}
-.content .line div::after{
-	content: '';
-    position: absolute;
-    left: 190px;
-    top: 50%;
-    margin-top: -4px;
-    display: block;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-color: transparent transparent transparent #D5F9CD;
-    border-top-width: 4px;
-    border-bottom-width: 4px;
-    border-left-width: 50px;
+    font-size: 16px;
 }
 .content .year{
-	position: absolute;
-    top: 62%;
-    left: 0;
-    /*margin-left: -40px;*/
+    margin-top: 10px;
 }
 .content .year li{
 	float: left;
@@ -93,9 +60,8 @@ table { border-collapse:collapse; border-spacing:0; }
     margin-left: -1.5px;
 }
 .content .thing{
-	position: absolute;
-    top: 32%;
-    left: 0;
+	position: relative;
+	height: 120px;
 }
 .content .thing .item{
 	border-left: 1px dashed #333;
@@ -103,7 +69,8 @@ table { border-collapse:collapse; border-spacing:0; }
     position: absolute;
     height: 120px;
 }
-.content .thing span{
+
+.content .thing .item span{
 	position: absolute;
     bottom: 18px;
 }
@@ -120,7 +87,46 @@ table { border-collapse:collapse; border-spacing:0; }
     background: #ccc;
     bottom: 14px;
     left: 0;
+    font-size: 14px;
+    padding: 4px 0px;
+}
+.content .thing .proce:hover .info{
+	display: block;
 }
 .content .thing .info{
-	margin-left: 26px;
+	position: absolute;
+    width: 200px;
+    right: -222px;
+    top: 4px;
+    border: 1px solid #333;
+    background: #fff;
+    z-index: 2;
+    padding: 6px;
+    display: none;
+}
+.content .thing .info::after{
+	display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px;
+    border-color: transparent #333 transparent transparent;
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: -16px;
+}
+.content .thing .item_one{
+	position: absolute;
+    height: 120px;
+    width: 126px;
+    border-left: 1px dashed #333;
+}
+.content .thing .item_one .proce{
+	margin-left: -63px;
+}
+.content .thing .item_one .start{
+	left: 0;
+    position: static;
+    display: block;
 }
