@@ -66,8 +66,8 @@ table { border-collapse:collapse; border-spacing:0; }
 	height: 220px;
 }
 .content .thing .item{
-	border-left: 1px dashed #333;
-    border-right: 1px dashed #333;
+	border-left: 2px dashed #333;
+    border-right: 2px dashed #333;
     position: absolute;
     height: 220px;
 }
@@ -123,7 +123,7 @@ table { border-collapse:collapse; border-spacing:0; }
 	position: absolute;
     height: 220px;
     width: 1px;
-    border-left: 1px dashed #333;
+    border-left: 2px dashed #333;
 }
 .content .thing .item_one .proce{
 	margin-left: -63px;
