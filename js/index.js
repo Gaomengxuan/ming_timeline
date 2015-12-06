@@ -79,50 +79,10 @@
 	}
 
 	function setThingLine(){
-		var data = [
-			{
-				start : 1328,
-				nian_start : '洪武元年',
-				title : '朱元璋出生',
-				info : ''
-			},
-			{
-				start : 1351,
-				nian_start : '至正十一年',
-				title : '韩山童、刘福通起义',
-				info : ''
-			},
-			{
-				start : 1353,
-				nian_start : '至正十三年',
-				title : '张士诚起义',
-				info : ''
-			},
-			{
-				start : 1368,
-				nian_start : '洪武元年',
-				// end : 1450,  // end可有可无，视情况而定，若不是该事件没有时间跨度，则可以省略
-				title : '朱元璋在南京登基，建国大名，年号洪武',
-				info : ''  // info可有可无，若事件过于简单，可省略
-			},
-			{
-				start : 1380,
-				nian_start : '洪武十三年',
-				title : '胡惟庸案',
-				info : '胡惟庸案发,株连三万余人;罢中书省,废丞相制度.改大都督府为五军都督府.罢御史台,废御史大夫'
-			},
-			{
-				start : 1399,  // 公历
-				nian_start : '建文元年', // 皇帝年号计数
-				end : 1402,
-				nian_end : '建文四年',
-				title : '靖难之役',
-				info : ''
-			}
-		];
-
 		var html = '',
-			level = [0, 0, 0, 0];  // 防止多个进度条重复
+			data = thing_data,
+			level = [0, 0, 0, 0, 0],  // 防止多个进度条重复，每个数字表示当前进度最后的年份，数组的最后一个表示年份最小的那一组
+			len_1 = level.length-1;
 		for(var i=0; i<data.length; i++){
 			var item = data[i],
 				startLeft = util.getItemPix(item.start),
@@ -135,15 +95,15 @@
 				
 
 
-			for(var j=0; j<3; j++){
+			for(var j=0; j<len_1; j++){
 				if(item.start>level[j]+2){
 					level[j] = item.end || item.start;
-					level[3] = j;
+					level[len_1] = j;
 					break;
 				}
 			}
 
-			bt = (level[3])*34+8;
+			bt = (level[len_1])*34+8;
 			if(item.end){
 				var endLeft = util.getItemPix(item.end);
 				sty_width = 'width:'+(endLeft-startLeft)+'px;';
@@ -154,12 +114,21 @@
 					</div>';
 		}
 
-		// <span class="start">'+item.start+'('+item.nian_start+')</span>'
-		// <div class="info">\
-		// 					<h3>'+item.title+'</h3>\
-		// 					<p class="desp">'+ (item.info||'' ) +'</p>\
-		// 				</div>\
 		$('#thing').append(html);
 	}
 	setThingLine();
+
+	// 鼠标滚轮，滚动条左右滚动
+	document.getElementById('main').addEventListener('mousewheel', function(event){
+		var e = event || window.event,
+			delta = (e.wheelDelta) ? e.wheelDelta / 120 : -(e.detail || 0) / 3;
+
+		var sleft = this.scrollLeft;
+		// 向上滚动
+		if(delta>0){
+			this.scrollLeft = sleft-100;
+		}else{
+			this.scrollLeft = sleft+100;
+		}
+	})
 })();

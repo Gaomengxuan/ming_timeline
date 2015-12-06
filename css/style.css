@@ -34,6 +34,8 @@ table { border-collapse:collapse; border-spacing:0; }
 }
 .content{
 	position: relative;
+	margin-bottom: 40px;
+	left: 0;
 }
 .content .line{
 	background: #ccc;
@@ -61,13 +63,13 @@ table { border-collapse:collapse; border-spacing:0; }
 }
 .content .thing{
 	position: relative;
-	height: 120px;
+	height: 220px;
 }
 .content .thing .item{
 	border-left: 1px dashed #333;
     border-right: 1px dashed #333;
     position: absolute;
-    height: 120px;
+    height: 220px;
 }
 
 .content .thing .item span{
@@ -102,6 +104,7 @@ table { border-collapse:collapse; border-spacing:0; }
     background: #fff;
     z-index: 2;
     padding: 6px;
+    text-align: left;
     display: none;
 }
 .content .thing .info::after{
@@ -118,12 +121,13 @@ table { border-collapse:collapse; border-spacing:0; }
 }
 .content .thing .item_one{
 	position: absolute;
-    height: 120px;
-    width: 126px;
+    height: 220px;
+    width: 1px;
     border-left: 1px dashed #333;
 }
 .content .thing .item_one .proce{
 	margin-left: -63px;
+	width: 126px;
 }
 .content .thing .item_one .start{
 	left: 0;
